@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* soft blue-green atmosphere */
+    --background: 192 33% 82%; /* #c4dbe0 */
+    --foreground: 193 47% 11%;
+    --card: 190 41% 96%;
+    --card-foreground: 193 47% 11%;
+    --popover: 190 41% 98%;
+    --popover-foreground: 193 47% 11%;
+    --primary: 187 73% 21%; /* deep teal */
+    --primary-foreground: 187 50% 96%;
+    --secondary: 189 33% 90%; /* #ddedf0 */
+    --secondary-foreground: 193 47% 14%;
+    --muted: 190 26% 87%;
+    --muted-foreground: 196 14% 32%;
+    --accent: 189 40% 88%;
+    --accent-foreground: 187 73% 19%;
+    --destructive: 6 62% 38%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 158 56% 27%;
+    --success-foreground: 150 45% 96%;
+    --warning: 40 77% 33%;
+    --warning-foreground: 45 80% 96%;
+    --border: 191 24% 68%;
+    --input: 191 24% 60%;
+    --ring: 187 73% 25%;
+    --radius: 0.5rem;
+    --sidebar-background: 193 47% 13%;
+    --sidebar-foreground: 190 33% 88%;
+    --sidebar-primary: 190 41% 96%;
+    --sidebar-primary-foreground: 193 47% 13%;
+    --sidebar-accent: 193 40% 19%;
+    --sidebar-accent-foreground: 190 41% 94%;
+    --sidebar-border: 193 30% 22%;
+    --sidebar-ring: 187 50% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: "Hanken Grotesk", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Hanken Grotesk", "Tajawal", ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.85);
+    color: hsl(var(--primary-foreground));
+  }
+
+  input[type="date"] {
+    font-family: "Hanken Grotesk", "Tajawal", sans-serif;
+  }
+}
+
+@layer components {
+  /* Ruled, spreadsheet-like data tables: visible column rules + sticky header */
+  .ruled-table {
+    @apply w-full border-collapse text-[15px];
+  }
+  .ruled-table thead th {
+    @apply sticky top-0 z-10 bg-secondary/95 px-4 py-3 text-start text-[12.5px] font-bold uppercase tracking-[0.08em] text-muted-foreground backdrop-blur-sm;
+    border-inline-end: 1px solid hsl(var(--border));
+    border-bottom: 2px solid hsl(var(--primary) / 0.55);
+  }
+  .ruled-table thead th:last-child {
+    border-inline-end: 0;
+  }
+  .ruled-table tbody td {
+    @apply px-4 py-3 align-middle;
+    border-inline-end: 1px solid hsl(var(--border) / 0.75);
+    border-bottom: 1px solid hsl(var(--border) / 0.75);
+  }
+  .ruled-table tbody td:last-child {
+    border-inline-end: 0;
+  }
+  .ruled-table tbody tr {
+    @apply transition-colors duration-150;
+  }
+  .ruled-table tbody tr:hover {
+    background: hsl(var(--accent) / 0.55);
+  }
+  .ruled-table tbody tr[data-clickable="true"] {
+    cursor: pointer;
+  }
+
+  .num {
+    font-family: "Hanken Grotesk", "Tajawal", sans-serif;
+    font-feature-settings: "tnum";
+    letter-spacing: 0.01em;
+  }
+
+  .surface {
+    @apply rounded-xl border border-border/70 bg-card/90 shadow-[0_1px_2px_rgba(16,38,43,0.08)];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
